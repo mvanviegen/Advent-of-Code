@@ -1,5 +1,7 @@
 package day.one
 
+import assertk.assertThat
+import assertk.assertions.isEqualTo
 import org.junit.jupiter.api.Test
 
 internal class OneTest {
