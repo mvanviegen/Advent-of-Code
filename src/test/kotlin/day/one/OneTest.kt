@@ -5,7 +5,7 @@ import assertk.assertions.isEqualTo
 import org.junit.jupiter.api.Test
 
 internal class OneTest {
-    private val dayOneInput = this::class.java.getResource("/dayoneinput.txt")
+    private val dayOneInput = this::class.java.getResource("/dayoneinput.txt").readText()
 
     @Test
     internal fun `should return 7 given a list with 7 increments`() {
