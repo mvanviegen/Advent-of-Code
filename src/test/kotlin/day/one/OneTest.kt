@@ -2,24 +2,43 @@ package day.one
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
+import kotlin.test.Ignore
+import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
 internal class OneTest {
-    @Test
-    internal fun `should return 7 given a list with 7 increments`() {
-        val input = listOf(199,200,208,210,200,207,240,269,260,263)
-        val result = One().measureIncrements(input)
+    @Nested
+    inner class ListIncrements {
+        @Test
+        internal fun `should return 7 given a list with 7 increments`() {
+            val input = listOf(199,200,208,210,200,207,240,269,260,263)
+            val result = One().measureIncrements(input)
 
-        assertThat(result).isEqualTo(7)
+            assertThat(result).isEqualTo(7)
+        }
+
+        @Test
+        internal fun `should return the amount of increments of a given list`() {
+            val input = generateListOfInput()
+            println(input.first())
+            val result = One().measureIncrements(input)
+
+            assertThat(result).isEqualTo(1316)
+        }
     }
 
-    @Test
-    internal fun `should return the amount of increments of a given list`() {
-        val input = generateListOfInput()
-        println(input.first())
-        val result = One().measureIncrements(input)
+    @Nested
+    inner class SlidingWindowIncrements {
+        @Test
+        internal fun `should return 5 given a list of 5 summed sliding window increments`() {
+            TODO("Not yet implemented")
+        }
 
-        assertThat(result).isEqualTo(7)
+        @Ignore
+        @Test
+        internal fun `should return the amount of increments given a list of summed sliding window increments`() {
+            TODO("Not yet implemented")
+        }
     }
 
     private fun generateListOfInput(): MutableList<Int> {
