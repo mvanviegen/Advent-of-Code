@@ -9,7 +9,6 @@ class One {
             if (it > lastItem) {
                 lastIncrement++
             }
-
             lastItem = it
         }
 
