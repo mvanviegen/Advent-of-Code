@@ -1,9 +1,34 @@
 package day.two
 
-class Two {
-    private val startingPositions = listOf("forward", "0", "up", "0")
+import day.two.Direction.FORWARD
+import day.two.Direction.DOWN
+import day.two.Direction.UP
 
-    fun calculateMultipliedSumOfPosition(positions: List<String>): Int {
-        return 0
+class Two {
+    private val startingPositions = listOf(
+        Movement(FORWARD, 0),
+        Movement(Direction.DOWN, 0)
+    )
+
+    fun calculateMultipliedSumOfMovements(movements: List<Movement>): Int {
+        val totalMovements = (startingPositions + movements)
+            .let(::movementsByDirection)
+            .let {
+                it.sumDirections()
+            }
+        val forwardSum = totalMovements.groupBy { it.direction }
+        println(forwardSum[FORWARD]!!.sumOf{it.count})
+        return totalMovements.sumOf { it.count }
+    }
+
+    private fun movementsByDirection(movements: List<Movement>) =
+        movements.groupBy { it.direction }
+
+    private fun Map<Enum<Direction>, List<Movement>>.sumDirections() =
+        this.mapValues {
+            it.value.sumOf { movement -> movement.count }
+        }
+
+    private fun Map<Enum<Direction>, List<Movement>>.calculateTotalSum() {
     }
 }

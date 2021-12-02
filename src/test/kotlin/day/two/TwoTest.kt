@@ -1,13 +1,24 @@
 package day.two
 
+import assertk.assertThat
+import assertk.assertions.isEqualTo
 import kotlin.test.Ignore
 import org.junit.jupiter.api.Test
 
 internal class TwoTest {
     @Test
     internal fun `should return 150 given the example input`() {
-        val positions = listOf("forward", "5", "down", "5")
-        val result = Two().calculateMultipliedSumOfPosition(positions)
+        val positions = listOf(
+            Movement(Direction.FORWARD, 5),
+            Movement(Direction.DOWN, 8),
+            Movement(Direction.FORWARD, 8),
+            Movement(Direction.UP, 3),
+            Movement(Direction.DOWN, 8),
+            Movement(Direction.FORWARD, 2)
+        )
+        val result = Two().calculateMultipliedSumOfMovements(positions)
+
+        assertThat(result).isEqualTo(150)
     }
 
     @Ignore
