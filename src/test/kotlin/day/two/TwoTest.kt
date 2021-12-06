@@ -2,7 +2,6 @@ package day.two
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
-import kotlin.test.Ignore
 import org.junit.jupiter.api.Test
 
 internal class TwoTest {
@@ -21,9 +20,21 @@ internal class TwoTest {
         assertThat(result).isEqualTo(150)
     }
 
-    @Ignore
     @Test
     internal fun `should calculate the multiplied horizontal and depth position given multiple positions`() {
-        TODO("Not yet implemented")
+        val input = generateListOfInput()
+        val result = Two().calculateMultipliedSumOfMovements(input)
+
+        assertThat(result).isEqualTo(2322630)
+    }
+
+    private fun generateListOfInput(): List<Movement> {
+        val file = this::class.java.getResource("/daytwoinput.txt").openStream().bufferedReader()
+        val inputList = mutableListOf<Movement>()
+        for (line in file.readLines()) {
+            val inputLine = line.split(" ")
+            inputList.add(Movement(Direction.valueOf(inputLine.first().toUpperCase()), inputLine.last().toInt()))
+        }
+        return inputList.toList()
     }
 }
