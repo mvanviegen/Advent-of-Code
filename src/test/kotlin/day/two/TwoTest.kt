@@ -10,7 +10,7 @@ internal class TwoTest {
     internal fun `should return 150 given the example input`() {
         val positions = listOf(
             Movement(Direction.FORWARD, 5),
-            Movement(Direction.DOWN, 8),
+            Movement(Direction.DOWN, 5),
             Movement(Direction.FORWARD, 8),
             Movement(Direction.UP, 3),
             Movement(Direction.DOWN, 8),
