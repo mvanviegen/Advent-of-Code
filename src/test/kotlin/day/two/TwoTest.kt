@@ -3,6 +3,7 @@ package day.two
 import assertk.assertThat
 import assertk.assertions.isEqualTo
 import org.junit.jupiter.api.Test
+import java.util.*
 
 internal class TwoTest {
     @Test
@@ -28,12 +29,34 @@ internal class TwoTest {
         assertThat(result).isEqualTo(2322630)
     }
 
+    @Test
+    internal fun `should calculate the final position based on aim`() {
+        val positions = listOf(
+            Movement(Direction.FORWARD, 5),
+            Movement(Direction.DOWN, 5),
+            Movement(Direction.FORWARD, 8),
+            Movement(Direction.UP, 3),
+            Movement(Direction.DOWN, 8),
+            Movement(Direction.FORWARD, 2)
+        )
+        val result = Two().calculateFinalPosition(positions)
+
+        assertThat(result).isEqualTo(900)
+    }
+
+    @Test
+    internal fun `should calculate the final position based on aim given advent input`() {
+        val result = Two().calculateFinalPosition(generateListOfInput())
+
+        assertThat(result).isEqualTo(2105273490)
+    }
+
     private fun generateListOfInput(): List<Movement> {
         val file = this::class.java.getResource("/daytwoinput.txt").openStream().bufferedReader()
         val inputList = mutableListOf<Movement>()
         for (line in file.readLines()) {
             val inputLine = line.split(" ")
-            inputList.add(Movement(Direction.valueOf(inputLine.first().toUpperCase()), inputLine.last().toInt()))
+            inputList.add(Movement(Direction.valueOf(inputLine.first().uppercase(Locale.getDefault())), inputLine.last().toInt()))
         }
         return inputList.toList()
     }
